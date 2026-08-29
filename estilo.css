@@ -1,0 +1,205 @@
+:root {
+  --marrom: #5d3a2d;
+  --dourado: #d8b36a;
+  --bege: #f6efe6;
+  --creme: #fffaf0;
+  --grafite: #2f2f2f;
+  --vermelho: #c62828;
+  --verde: #2e7d32;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #f4e1c1, #fffaf0);
+  color: var(--grafite);
+}
+
+.topo {
+  background: var(--marrom);
+  color: white;
+  padding: 1.2rem 2rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.menu a:hover,
+.menu a:focus {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero,
+.receita,
+.poesia {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 25px rgba(93, 58, 45, 0.08);
+}
+
+h1 {
+  color: var(--creme);
+  margin-bottom: 0;
+}
+
+h2,
+h3 {
+  color: var(--marrom);
+}
+
+.duas-tabelas {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.duas-tabelas table,
+.beer-table {
+  flex: 1 1 320px;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border: 1px solid #d9c5a5;
+}
+
+th,
+td {
+  border: 1px solid #d9c5a5;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+th {
+  background: var(--dourado);
+  color: var(--marrom);
+}
+
+.links-externos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.links-externos a,
+.poeta a,
+.card a {
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.links-externos a:hover,
+.poeta a:hover,
+.card a:hover,
+.links-externos a:focus,
+.poeta a:focus,
+.card a:focus {
+  text-decoration: underline;
+}
+
+.links-externos a:visited,
+.poeta a:visited,
+.card a:visited {
+  color: #5b2a86;
+}
+
+.mote {
+  color: var(--vermelho);
+}
+
+.poeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.poeta img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--dourado);
+}
+
+.poeta h2 {
+  margin: 0;
+}
+
+.poema {
+  background: rgba(255, 255, 255, 0.5);
+  border-left: 4px solid var(--dourado);
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+}
+
+.beer-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+button {
+  background: var(--marrom);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#beerDisplay {
+  min-height: 40px;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+#beerDisplay.fade {
+  opacity: 0;
+}
+
+.beer-item {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid #e5d9c7;
+  background: #fffdf8;
+}
+
+@media (max-width: 700px) {
+  .poeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .duas-tabelas {
+    flex-direction: column;
+  }
+}
