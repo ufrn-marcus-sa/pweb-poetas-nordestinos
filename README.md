@@ -1,2 +1,3 @@
 # pweb-poetas-nordestinos
-📜 Portfólio Poético - Programação Web (UFRN) Repositório dedicado ao desenvolvimento das receitas práticas da disciplina de Programação Web (PWEB). O projeto consiste em um portal web modular que cataloga, estiliza e exibe trovas e motes de diversos poetas populares do Nordeste.
+📜 Portfólio Poético - Programação Web (UFRN) Repositório dedicado ao desenvolvimento das receitas práticas da disciplina de Programação Web (PWEB). O projeto consiste em um portal web modular que cataloga, estiliza e exibe trovas e motes de diversos poetas populares do Nordeste, aplicando de forma prática os conceitos de estruturação hierárquica em HTML5, separação de estilo com CSS externo e manipulação de elementos dinâmicos.
+Tecnologias Utilizadas: HTML5, CSS3 (folhas de estilo externas e classes reutilizáveis) e JavaScript.
