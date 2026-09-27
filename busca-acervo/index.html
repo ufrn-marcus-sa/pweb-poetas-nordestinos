@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!--
+    FEATURE:  Busca e ordenação do acervo de poetas nordestinos
+    ORIGEM:   Receita 5 - JS: Arrow e Callback Functions
+    TÉCNICAS: arrow function, callback function, refatoração, const, let,
+              map, filter, sort, join, evento input, preventDefault
+
+    EXERCÍCIOS DA RECEITA ATENDIDOS:
+      1. renderAcervo() recebe o vetor por parâmetro e opera sobre ele,
+         nunca sobre a global ACERVO.
+      2. As ordenações foram reescritas inteiramente em arrow functions,
+         com o domínio trocado para o acervo de poetas.
+      3. A ordenação é disparada por <a> (links), não por <button>.
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busca no acervo | Poetas Nordestinos</title>
+    <link rel="stylesheet" href="../estilo.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
+    <script defer src="../acervo.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="topo">
+      <nav class="menu">
+        <a href="../index.html">Início</a>
+        <a href="index.html">Busca no acervo</a>
+        <a href="../fichas-acervo/index.html">Fichas do acervo</a>
+        <a href="../enciclopedia/index.html">Enciclopédia</a>
+        <a href="../enciclopedia-promessas/index.html">Enciclopédia (Promessas)</a>
+      </nav>
+      <h1>Poetas Nordestinos</h1>
+    </header>
+
+    <main class="container">
+      <a class="voltar" href="../index.html">&larr; Voltar ao início</a>
+
+      <section class="hero">
+        <h2>Busca no acervo</h2>
+        <p>
+          Digite para filtrar o acervo enquanto escreve e ordene os resultados por nome,
+          estado ou época. Tudo acontece na página, sem recarregar nada.
+        </p>
+      </section>
+
+      <section class="receita">
+        <div class="controle">
+          <input
+            type="search"
+            id="campoBusca"
+            placeholder="Buscar por nome, apelido, estado ou ano..."
+            aria-label="Buscar no acervo"
+          />
+        </div>
+
+        <ul class="chips" id="opcoesOrdenacao">
+          <li><a class="chip" href="#" data-ordem="az" aria-pressed="true">A &rarr; Z</a></li>
+          <li><a class="chip" href="#" data-ordem="za" aria-pressed="false">Z &rarr; A</a></li>
+          <li><a class="chip" href="#" data-ordem="antigo" aria-pressed="false">Mais antigos</a></li>
+          <li><a class="chip" href="#" data-ordem="recente" aria-pressed="false">Mais recentes</a></li>
+          <li><a class="chip" href="#" data-ordem="estado" aria-pressed="false">Por estado</a></li>
+        </ul>
+
+        <p class="contador" id="contador"></p>
+        <div id="listaPoetas"></div>
+      </section>
+
+      <section class="receita">
+        <h3>Como o acervo é montado</h3>
+        <p>
+          A busca é só um <code>filter</code> seguido de um <code>sort</code> seguido de
+          um <code>map</code> que devolve as linhas em HTML. Toda a montagem acontece em
+          funções anônimas passadas como argumento — são callbacks: quem as executa é o
+          <code>Array</code>, não o nosso código.
+        </p>
+
+        <details>
+          <summary>Antes e depois: a mesma feature, duas notações</summary>
+          <p>
+            A refatoração da receita trocou <code>function</code> por arrow function sem
+            mudar o que a página faz. Os dois códigos estão abaixo, lado a lado.
+          </p>
+
+          <p><strong>Antes — funções declaradas e nomeadas</strong></p>
+          <pre class="codigo"><code>function gerarLinha(poeta) {
+  return `&lt;article&gt;${poeta.nome}&lt;/article&gt;`
+}
+
+function renderizar(lista) {
+  const div = document.getElementById("listaPoetas")
+  div.innerHTML = lista.map(gerarLinha).join("\n")
+}</code></pre>
+
+          <p><strong>Depois — arrow functions, com callback anônima no map</strong></p>
+          <pre class="codigo"><code>const gerarLinha = poeta =&gt; `&lt;article&gt;${poeta.nome}&lt;/article&gt;`
+
+const renderizar = lista =&gt; {
+  const div = document.getElementById("listaPoetas")
+  div.innerHTML = lista.map(gerarLinha).join("\n")
+}</code></pre>
+
+          <p>
+            Note que a segunda versão passa a função <em>diretamente</em> para o
+            <code>map</code>, sem nome intermediário. É uma arrow function, é uma
+            callback function e é anônima — as três coisas ao mesmo tempo.
+          </p>
+        </details>
+      </section>
+
+      <footer class="credito">
+        <p>
+          Técnicas: <code>arrow function</code>, <code>callback function</code>,
+          <code>refatoração</code>, <code>map</code>, <code>filter</code>,
+          <code>sort</code>, <code>join</code> — origem: Receita 5
+          (JS — Arrow e Callback Functions).
+        </p>
+        <p>Dados do acervo conferidos na Wikipédia; sem API nesta feature.</p>
+      </footer>
+    </main>
+  </body>
+</html>
