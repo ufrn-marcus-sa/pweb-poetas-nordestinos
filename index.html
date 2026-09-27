@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portal dos Poetas Nordestinos</title>
     <link rel="stylesheet" href="estilo.css" />
-    <link rel="icon" type="image/x-icon" href="poetas/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
     <script defer src="script.js"></script>
   </head>
   <body>
     <header class="topo">
       <nav class="menu">
         <a href="index.html">Início</a>
+        <a href="busca-acervo/index.html">Busca no acervo</a>
+        <a href="fichas-acervo/index.html">Fichas do acervo</a>
+        <a href="enciclopedia/index.html">Enciclopédia</a>
+        <a href="enciclopedia-promessas/index.html">Enciclopédia (Promessas)</a>
         <a href="poetas/joao-paraibano.html">João Paraibano</a>
         <a href="poetas/francisco-borges.html">Francisco Borges</a>
       </nav>
@@ -25,6 +29,72 @@
           Um portal que reúne trovas, motes e histórias dos poetas populares do Nordeste,
           com uma proposta visual simples e funcional para aprender HTML, CSS e JavaScript.
         </p>
+      </section>
+
+      <section class="receita">
+        <h3>Receitas 5 a 8 — as features do portal</h3>
+        <p>
+          Cada receita virou uma funcionalidade do portal. A página de cada feature é
+          a ferramenta funcionando; a técnica usada nela e a receita de onde veio
+          estão anotadas no rodapé e no comentário do código.
+        </p>
+
+        <div class="grade">
+          <article class="card">
+            <h4><a href="busca-acervo/index.html">Busca no acervo</a></h4>
+            <p class="card-meta">
+              <code>arrow function</code>, <code>callback</code>, <code>map</code>,
+              <code>filter</code>, <code>sort</code>, <code>join</code>
+            </p>
+            <p>Filtra e ordena os poetas enquanto o usuário digita.</p>
+            <p class="card-meta">Origem: Receita 5</p>
+          </article>
+
+          <article class="card">
+            <h4><a href="fichas-acervo/index.html">Fichas do acervo</a></h4>
+            <p class="card-meta">
+              <code>objetos JSON</code>, <code>destructuring</code>,
+              <code>dot notation</code>, <code>parâmetro default</code>
+            </p>
+            <p>O acervo em fichas ou em tabela, com função genérica de renderização.</p>
+            <p class="card-meta">Origem: Receita 6</p>
+          </article>
+
+          <article class="card">
+            <h4><a href="enciclopedia/index.html">Enciclopédia</a></h4>
+            <p class="card-meta">
+              <code>fetch</code>, <code>await</code>, <code>async</code>,
+              <code>try/catch</code>
+            </p>
+            <p>Consulta verbetes e fotos de poetas direto da Wikipédia.</p>
+            <p class="card-meta">Origem: Receita 7</p>
+          </article>
+
+          <article class="card">
+            <h4><a href="enciclopedia-promessas/index.html">Enciclopédia (Promessas)</a></h4>
+            <p class="card-meta">
+              <code>Promise</code>, <code>then</code>, <code>catch</code>,
+              encadeamento
+            </p>
+            <p>A mesma busca, sem botão, feita só com promessas.</p>
+            <p class="card-meta">Origem: Receita 8</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="receita">
+        <h3>Receitas 1 a 4 — fundamentos</h3>
+        <p>
+          As primeiras receitas continuam onde estavam, neste mesmo arquivo e nas
+          páginas de <a href="poetas/joao-paraibano.html">João Paraibano</a> e
+          <a href="poetas/francisco-borges.html">Francisco Borges</a>.
+        </p>
+        <ul>
+          <li>Receita 1 — HTML básico: tabelas, legendas e links (nesta página)</li>
+          <li>Receita 2 — CSS externo e classes reutilizáveis (páginas dos poetas)</li>
+          <li>Receita 3 — JavaScript básico: DOM e eventos (páginas dos poetas)</li>
+          <li>Receita 4 — Arrays: <code>sort</code>, cópia e embaralhamento (nesta página)</li>
+        </ul>
       </section>
 
       <section class="receita">
