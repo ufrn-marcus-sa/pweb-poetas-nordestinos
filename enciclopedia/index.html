@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!--
+    FEATURE:  Enciclopédia de poetas — busca e consulta de verbetes na Wikipédia
+    ORIGEM:   Receita 7 - Fetch
+    TÉCNICAS: fetch, await, async, try/catch, response.ok, response.json(),
+              estado de carregamento, tratamento de resposta vazia,
+              renderizador genérico vindo de um .js separado
+
+    API USADA: https://pt.wikipedia.org/w/api.php
+    É uma API diferente da random-data-api, que saiu do ar, como o enunciado pede.
+
+    EXERCÍCIOS DA RECEITA ATENDIDOS:
+      1. Exibe propriedades além do título: id da página, posição no resultado
+         da busca, data da última edição e a miniatura.
+      2. Página estilizada com o CSS do próprio repositório.
+      3. A feature consulta a API em busca de itens que não são cervejas:
+         o seletor troca o termo (repentista, cordel, cantoria, poeta popular)
+         e a mesma função serve a qualquer consulta.
+      4. A função genérica montarTabela(), que vive no arquivo ../tabela.js,
+         é importada e usada para montar duas tabelas de origens diferentes:
+         os resultados da API e o acervo local.
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enciclopédia | Poetas Nordestinos</title>
+    <link rel="stylesheet" href="../estilo.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
+    <script defer src="../acervo.js"></script>
+    <script defer src="../tabela.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="topo">
+      <nav class="menu">
+        <a href="../index.html">Início</a>
+        <a href="../busca-acervo/index.html">Busca no acervo</a>
+        <a href="../fichas-acervo/index.html">Fichas do acervo</a>
+        <a href="index.html">Enciclopédia</a>
+        <a href="../enciclopedia-promessas/index.html">Enciclopédia (Promessas)</a>
+      </nav>
+      <h1>Poetas Nordestinos</h1>
+    </header>
+
+    <main class="container">
+      <a class="voltar" href="../index.html">&larr; Voltar ao início</a>
+
+      <section class="hero">
+        <h2>Enciclopédia de poetas</h2>
+        <p>
+          Tudo o que o acervo local não alcança: a Wikipédia. Cada consulta vai à API
+          e volta com verbetes, fotos e um resumo de cada poeta.
+        </p>
+      </section>
+
+      <section class="receita">
+        <div class="controle">
+          <input
+            type="search"
+            id="campoBusca"
+            value="repentista nordestino"
+            placeholder="Termo de busca..."
+            aria-label="Termo de busca na Wikipédia"
+          />
+          <select id="seletorTermo" aria-label="Termo sugerido">
+            <option value="repentista nordestino">Repentista nordestino</option>
+            <option value="poeta de cordel">Poeta de cordel</option>
+            <option value="cantoria de viola">Cantoria de viola</option>
+            <option value="poeta popular brasileiro">Poeta popular brasileiro</option>
+            <option value="zzzqqxkcvbw">Teste: termo sem resultado</option>
+          </select>
+          <button id="botaoConsultar" type="button">Consultar</button>
+          <button id="botaoErro" type="button">Testar erro</button>
+        </div>
+
+        <p>
+          A Wikipédia faz busca difusa: consultar um poeta que não tem verbete
+          próprio devolve mesmo assim resultados parecidos. Para ver o que a API
+          responde quando não acha nada, use a última opção do seletor.
+        </p>
+
+        <p id="status" class="status status-ok" hidden></p>
+        <div id="cartoesDiv"></div>
+      </section>
+
+      <section class="receita">
+        <h3>A mesma função, duas origens</h3>
+        <p>
+          As duas tabelas abaixo foram montadas pela <em>mesma</em> função
+          <code>montarTabela()</code>, importada do arquivo <code>../tabela.js</code>.
+          Ela não sabe de onde vieram os objetos, nem o que eles significam: recebe um
+          vetor, uma lista de colunas e o id de um elemento, e desenha.
+        </p>
+
+        <div class="grade">
+          <div>
+            <h4>Resultado da API</h4>
+            <div id="tabelaApi"></div>
+          </div>
+          <div>
+            <h4>Acervo local</h4>
+            <div id="tabelaAcervo"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="receita">
+        <h3>Do que a resposta precisa virar</h3>
+        <p>
+          A API devolve a busca já pronta, mas dentro de um objeto indexado pelo
+          <em>id</em> de cada página, não num vetor. Isso acontece porque a Wikipédia
+          pode devolver um verbete que não existe mais, e o lugar vazio fica reservado.
+        </p>
+        <pre class="codigo"><code>resposta.query.pages  //  { "1278824": {...}, "3478499": {...} }
+
+Object.values(resposta.query.pages)  //  [ {...}, {...} ]</code></pre>
+        <p>
+          Só depois disso o vetor tem a forma que o <code>map</code> da receita espera.
+          É uma linha a mais que o enunciado mostra, mas é o que a API real devolve.
+        </p>
+      </section>
+
+      <footer class="credito">
+        <p>
+          Técnicas: <code>fetch</code>, <code>await</code>, <code>async</code>,
+          <code>try/catch</code>, <code>response.json()</code>, renderizador genérico
+          em arquivo <code>.js</code> separado — origem: Receita 7 (Fetch).
+        </p>
+        <p>
+          Fonte dos verbetes: Wikipédia em português, via API MediaWiki. As imagens
+          pertencem à Wikimedia Commons.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
