@@ -1,4 +1,4 @@
-// Receita 4: JavaScript Arrays (map e join)
+// Receita 4: JavaScript Arrays (cópia do vetor, sort, Fisher-Yates e forEach)
 // Guarda a lista inicial de cervejas que será exibida e manipulada na página.
 const beerList = [
   'Cerveja de Trigo',
@@ -8,7 +8,7 @@ const beerList = [
   'Lager de Sabores'
 ];
 
-// Receita 4: JavaScript Arrays (map e join)
+// Receita 4: JavaScript Arrays (cópia do vetor, sort, Fisher-Yates e forEach)
 // Essa função recebe uma lista de nomes e monta a tabela dinamicamente no HTML.
 const renderBeerTable = (items) => {
   const tbody = document.getElementById('beerTableBody');
@@ -29,14 +29,14 @@ const renderBeerTable = (items) => {
   });
 };
 
-// Receita 4: JavaScript Arrays (map e join)
+// Receita 4: JavaScript Arrays (cópia do vetor, sort, Fisher-Yates e forEach)
 // Cria uma cópia da lista original, ordena em ordem alfabética e repinta a tabela.
 const sortBeerList = () => {
   const sorted = [...beerList].sort();
   renderBeerTable(sorted);
 };
 
-// Receita 4: JavaScript Arrays (map e join)
+// Receita 4: JavaScript Arrays (cópia do vetor, sort, Fisher-Yates e forEach)
 // Embaralha os elementos da lista usando uma lógica de troca aleatória.
 const shuffleBeerList = () => {
   const shuffled = [...beerList];
@@ -49,7 +49,7 @@ const shuffleBeerList = () => {
   renderBeerTable(shuffled);
 };
 
-// Receita 4: JavaScript Arrays (map e join)
+// Receita 4: JavaScript Arrays (cópia do vetor, sort, Fisher-Yates e forEach)
 // Associa os botões de ordenação e embaralhamento aos eventos de clique.
 const setupBeerButtons = () => {
   const sortButton = document.getElementById('sortBeersBtn');
