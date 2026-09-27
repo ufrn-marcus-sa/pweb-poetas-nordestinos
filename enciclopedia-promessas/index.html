@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!--
+    FEATURE:  Busca de verbetes na Wikipédia enquanto o usuário digita
+    ORIGEM:   Receita 8 - Promessas
+    TÉCNICAS: Promise, then, catch, encadeamento de then, segundo parâmetro do
+              then para tratar rejeição, debounce, descarte de requisição obsoleta
+
+    IMPORTANTE: a feature de busca, que está no topo desta página, não usa nenhum
+    async nem nenhum await. Todo o trabalho assíncrono dela é feito por .then() e
+    .catch(). O único async/await do arquivo está no painel comparativo do final,
+    que precisa dele justamente para poder mostrar a diferença.
+
+    EXERCÍCIOS DA RECEITA ATENDIDOS:
+      1. Todos os exercícios da Receita 7 refeitos com Promise/then/catch:
+         resultados em tabela com propriedades extras, página bonitificada e a
+         função genérica montarTabela() importada de ../tabela.js.
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enciclopédia (Promessas) | Poetas Nordestinos</title>
+    <link rel="stylesheet" href="../estilo.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
+    <script defer src="../acervo.js"></script>
+    <script defer src="../tabela.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="topo">
+      <nav class="menu">
+        <a href="../index.html">Início</a>
+        <a href="../busca-acervo/index.html">Busca no acervo</a>
+        <a href="../fichas-acervo/index.html">Fichas do acervo</a>
+        <a href="../enciclopedia/index.html">Enciclopédia</a>
+        <a href="index.html">Enciclopédia (Promessas)</a>
+      </nav>
+      <h1>Poetas Nordestinos</h1>
+    </header>
+
+    <main class="container">
+      <a class="voltar" href="../index.html">&larr; Voltar ao início</a>
+
+      <section class="hero">
+        <h2>Enciclopédia — busca ao digitar</h2>
+        <p>
+          A mesma enciclopédia da outra feature, com duas diferenças: aqui não existe
+          botão, a busca dispara sozinha a cada tecla; e nada aqui usa
+          <code>async</code>/<code>await</code>. Todo o encadeamento é feito com
+          <code>.then()</code> e <code>.catch()</code>.
+        </p>
+      </section>
+
+      <section class="receita">
+        <div class="controle">
+          <input
+            type="search"
+            id="campoBusca"
+            placeholder="Digite para consultar a Wikipédia..."
+            aria-label="Buscar verbetes na Wikipédia"
+          />
+        </div>
+
+        <p id="status" class="status status-ok" hidden></p>
+        <div id="cartoesDiv"></div>
+        <div id="tabelaDiv"></div>
+      </section>
+
+      <section class="receita">
+        <h3>Por que uma promessa e não a outra</h3>
+        <p>
+          A cada tecla o navegador dispara uma requisição. A API leva um tempo
+          variável para responder, e as respostas podem chegar fora de ordem: você
+          digita <code>cordel</code>, depois <code>cord</code>, e a resposta mais
+          lenta pode ser a primeira a chegar.
+        </p>
+        <p>
+          A saída é numerar as requisições. Cada busca guarda o número da vez que
+          saiu, e o <code>.then</code> só escreve na tela se o número dele ainda for
+          o mais alto. Uma resposta atrasada chega, vê que já foi superada, e sai sem
+          desenhar nada. É o <code>catch</code> da corrida.
+        </p>
+      </section>
+
+      <section class="receita">
+        <h3>async/await e then/catch lado a lado</h3>
+        <p>
+          As duas abordagens fazem a mesma coisa e têm o mesmo desempenho: o
+          <code>await</code> não trava a página, ele devolve o controle enquanto a
+          resposta não chega. A diferença é de leitura.
+        </p>
+
+        <div class="grade">
+          <div>
+            <h4>Com async/await</h4>
+            <pre class="codigo"><code>async function consultar() {
+  try {
+    const res = await fetch(url)
+    const dados = await res.json()
+    desenhar(dados)
+  } catch (err) {
+    mostrarErro(err)
+  }
+}</code></pre>
+          </div>
+
+          <div>
+            <h4>Com then/catch</h4>
+            <pre class="codigo"><code>function consultar() {
+  fetch(url)
+    .then(res =&gt; res.json())
+    .then(dados =&gt; desenhar(dados))
+    .catch(err =&gt; mostrarErro(err))
+}</code></pre>
+          </div>
+        </div>
+
+        <p>
+          O <code>catch</code> do encadeamento vale para os dois <code>then</code>, do
+          mesmo jeito que o <code>try/catch</code> vale para o bloco inteiro. Dá para
+          tratar cada etapa separadamente passando um segundo callback ao
+          <code>then</code>, mas na prática o <code>catch</code> no fim resolve quase
+          sempre.
+        </p>
+      </section>
+
+      <section class="receita">
+        <h3>Qual trecho roda primeiro</h3>
+        <p>
+          A ordem de execução não é a ordem em que o código está escrito. Clique para
+          comparar as duas abordagens medindo o tempo de cada etapa.
+        </p>
+
+        <div class="controle">
+          <button id="botaoComThen" type="button">Rodar com then/catch</button>
+          <button id="botaoComAwait" type="button">Rodar com async/await</button>
+        </div>
+
+        <p class="contador">Saída:</p>
+        <pre class="ordem-console" id="ordemConsole">aguardando...</pre>
+
+        <p>
+          A linha <strong>3</strong> está no mesmo lugar nos dois exemplos: logo
+          depois da chamada da requisição. O que muda é o que o interpretador faz
+          antes de chegar nela.
+        </p>
+        <p>
+          No <strong>then</strong>, a chamada não bloqueia nada, então a linha
+          3 roda antes de a função de fora terminar: a ordem fica
+          <code>1, 2, 3, 4</code>. No <strong>await</strong>, a função devolve o
+          controle justamente ali, e a linha 3 só roda quando a resposta chega: a
+          ordem vira <code>1, 2, 4, 3</code>.
+        </p>
+        <p>
+          Repare que a resposta chega por último nos dois casos, e que
+          <strong>em nenhum dos dois a página trava</strong>. Isso é o ponto: as
+          abordagens são equivalentes em desempenho e diferentes só na leitura.
+        </p>
+      </section>
+
+      <footer class="credito">
+        <p>
+          Técnicas: <code>Promise</code>, <code>then</code>, <code>catch</code>,
+          encadeamento, segundo parâmetro do <code>then</code>, descarte de requisição
+          obsoleta — origem: Receita 8 (Promessas). A busca do topo da página não usa
+          <code>async</code>/<code>await</code>; só o painel comparativo usa.
+        </p>
+        <p>
+          Verbetes da Wikipédia em português, via API MediaWiki. As imagens pertencem
+          à Wikimedia Commons.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

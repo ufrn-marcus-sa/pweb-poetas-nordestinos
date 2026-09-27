@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <!--
+    FEATURE:  Fichas e tabela do acervo, montadas a partir de objetos JSON
+    ORIGEM:   Receita 6 - Objetos JSON
+    TÉCNICAS: JSON, propriedade, dot notation, destructuring, indexação do
+              objeto como mapa, parâmetros default, destructuring com default
+
+    EXERCÍCIOS DA RECEITA ATENDIDOS:
+      1. A ficha pode ser vista como tabela, com cabeçalho, e não só como divs.
+      2. Tabela e fichas estilizadas com o CSS do próprio repositório.
+      3. Propriedades acrescidas ao acervo (apelido, nota) e exibidas.
+      4. carregarDiv() recebe o id do elemento de destino; default 'fichaDiv'.
+      5. Os títulos das colunas são arbitrários; default ['Poeta','Estado',
+         'Nascimento','Falecimento'].
+      6. As propriedades processadas são configuráveis; default
+         ['nome','estado','nascimento','morte']. A MESMA função renderiza
+         também o vetor REGIOES, cujas propriedades têm outros nomes.
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fichas do acervo | Poetas Nordestinos</title>
+    <link rel="stylesheet" href="../estilo.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.png" />
+    <script defer src="../acervo.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="topo">
+      <nav class="menu">
+        <a href="../index.html">Início</a>
+        <a href="../busca-acervo/index.html">Busca no acervo</a>
+        <a href="index.html">Fichas do acervo</a>
+        <a href="../enciclopedia/index.html">Enciclopédia</a>
+        <a href="../enciclopedia-promessas/index.html">Enciclopédia (Promessas)</a>
+      </nav>
+      <h1>Poetas Nordestinos</h1>
+    </header>
+
+    <main class="container">
+      <a class="voltar" href="../index.html">&larr; Voltar ao início</a>
+
+      <section class="hero">
+        <h2>Fichas do acervo</h2>
+        <p>
+          O acervo é um vetor de objetos JSON. Esta feature mostra o mesmo vetor de
+          duas maneiras — como fichas e como tabela — e deixa você escolher como as
+          propriedades são lidas dentro da função.
+        </p>
+      </section>
+
+      <section class="receita">
+        <div class="controle">
+          <label for="formaVisualizacao">Visualização</label>
+          <select id="formaVisualizacao">
+            <option value="cartoes">Fichas</option>
+            <option value="tabela">Tabela</option>
+          </select>
+
+          <label for="formaAcesso">Acesso às propriedades</label>
+          <select id="formaAcesso">
+            <option value="indice">Indexação — item['nome']</option>
+            <option value="ponto">Dot notation — item.nome</option>
+            <option value="desestruturacao">Desestruturação — ({ nome })</option>
+          </select>
+        </div>
+
+        <div id="fichaDiv"></div>
+      </section>
+
+      <section class="receita">
+        <h3>A mesma função, outras propriedades</h3>
+        <p>
+          Abaixo, <code>carregarDiv()</code> é chamada de novo — sem mudar uma linha do
+          código — para renderizar o vetor <code>REGIOES</code>, cujos objetos têm
+          <code>capital</code>, <code>poetas</code> e nenhuma das propriedades do acervo.
+          É o que a genericidade permite: a função não sabe o que está desenhando, só
+          que tem um vetor de objetos e uma lista de chaves para ler.
+        </p>
+        <div id="regioesDiv"></div>
+      </section>
+
+      <section class="receita">
+        <h3>Três formas de ler as mesmas propriedades</h3>
+        <p>
+          Os três modos do seletor acima são a mesma página com a função mudando só a
+          linha que lê a propriedade. Nenhuma delas altera o objeto original.
+        </p>
+
+        <p><strong>Indexação — o objeto como mapa</strong></p>
+        <pre class="codigo"><code>item['nome']</code></pre>
+
+        <p><strong>Dot notation — a forma mais comum</strong></p>
+        <pre class="codigo"><code>item.nome</code></pre>
+
+        <p>
+          Com dot notation você acessa a propriedade pelo nome. Com indexação você
+          informa a chave como uma string entre colchetes, o mesmo mecanismo de um
+          vetor, só que o índice é um nome e não um inteiro.
+        </p>
+
+        <p><strong>Desestruturação — as propriedades viram variáveis</strong></p>
+        <pre class="codigo"><code>({ nome, estado, nascimento, morte }) =&gt; `&lt;tr&gt;...&lt;/tr&gt;`</code></pre>
+
+        <p>
+          A desestruturação “arregaça” o objeto e puxa para fora só as propriedades que
+          interessam. Se o objeto tivesse trinta propriedades e você só precisa de
+          quatro, a expressão continua igual. E atribuir a uma das variáveis
+          desestruturadas não muda o objeto de origem.
+        </p>
+      </section>
+
+      <footer class="credito">
+        <p>
+          Técnicas: <code>objetos JSON</code>, <code>propriedades</code>,
+          <code>dot notation</code>, <code>destructuring</code>, indexação do objeto
+          como mapa, <code>parâmetro default</code> — origem: Receita 6
+          (Objetos JSON).
+        </p>
+        <p>Dados locais em <code>acervo.js</code>; sem API nesta feature.</p>
+      </footer>
+    </main>
+  </body>
+</html>
