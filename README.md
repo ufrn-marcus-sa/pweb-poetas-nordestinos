@@ -11,7 +11,19 @@ estão anotadas no comentário do código e num rodapé discreto em cada página
 - **Repositório:** https://github.com/ufrn-marcus-sa/pweb-poetas-nordestinos
 - **Tecnologias:** HTML5, CSS3 (folha externa) e JavaScript (scripts clássicos, sem build)
 
-## Como rodar
+## Unidade 2: Next.js (Receitas 13 a 21)
+
+As receitas 13 a 21 estão na pasta [`portal-next/`](portal-next/), uma aplicação
+Next.js com o mesmo tema e a mesma folha de estilo. Instruções para rodar e a
+tabela de onde está cada receita: [`portal-next/README.md`](portal-next/README.md).
+
+```bash
+cd portal-next
+npm install
+npm run dev
+```
+
+## Como rodar (Unidade 1)
 
 Basta abrir `index.html` no navegador para as receitas 1 a 6.
 
