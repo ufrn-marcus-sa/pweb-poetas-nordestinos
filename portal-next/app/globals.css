@@ -1,0 +1,721 @@
+/* Folha de estilo do portal. A base é o ../estilo.css da Unidade 1, copiada
+   sem alterações; as classes novas da Unidade 2 estão no fim do arquivo. */
+
+:root {
+  --marrom: #5d3a2d;
+  --dourado: #d8b36a;
+  --bege: #f6efe6;
+  --creme: #fffaf0;
+  --grafite: #2f2f2f;
+  --vermelho: #c62828;
+  --verde: #2e7d32;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #f4e1c1, #fffaf0);
+  color: var(--grafite);
+}
+
+.topo {
+  background: var(--marrom);
+  color: white;
+  padding: 1.2rem 2rem;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.menu a:hover,
+.menu a:focus {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero,
+.receita,
+.poesia {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 25px rgba(93, 58, 45, 0.08);
+}
+
+h1 {
+  color: var(--creme);
+  margin-bottom: 0;
+}
+
+h2,
+h3 {
+  color: var(--marrom);
+}
+
+.duas-tabelas {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.duas-tabelas table,
+.beer-table {
+  flex: 1 1 320px;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border: 1px solid #d9c5a5;
+}
+
+th,
+td {
+  border: 1px solid #d9c5a5;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+th {
+  background: var(--dourado);
+  color: var(--marrom);
+}
+
+.links-externos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.links-externos a,
+.poeta a,
+.card a {
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.links-externos a:hover,
+.poeta a:hover,
+.card a:hover,
+.links-externos a:focus,
+.poeta a:focus,
+.card a:focus {
+  text-decoration: underline;
+}
+
+.links-externos a:visited,
+.poeta a:visited,
+.card a:visited {
+  color: #5b2a86;
+}
+
+.mote {
+  color: var(--vermelho);
+}
+
+.poeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.poeta img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--dourado);
+}
+
+.poeta h2 {
+  margin: 0;
+}
+
+.poema {
+  background: rgba(255, 255, 255, 0.5);
+  border-left: 4px solid var(--dourado);
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+}
+
+.beer-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+button {
+  background: var(--marrom);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#beerDisplay {
+  min-height: 40px;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+#beerDisplay.fade {
+  opacity: 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #d9c5a5;
+  border-left: 4px solid var(--dourado);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+}
+
+.card h3,
+.card h4 {
+  margin: 0;
+  color: var(--marrom);
+}
+
+.card p {
+  margin: 0;
+}
+
+.card .card-meta {
+  font-size: 0.85rem;
+  color: #6b5a4a;
+}
+
+.grade {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 1rem;
+}
+
+.grade-cartoes {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.conteudo-tabela {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.tabela-dados {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid #d9c5a5;
+}
+
+.conteudo-tabela .tabela-dados th {
+  position: sticky;
+  top: 0;
+}
+
+.cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  background: white;
+  border: 1px solid #d9c5a5;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.cartao-titulo {
+  margin: 0;
+  color: var(--marrom);
+}
+
+.cartao-titulo a {
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.cartao-titulo a:hover,
+.cartao-titulo a:focus {
+  text-decoration: underline;
+}
+
+.cartao-subtitulo {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6b5a4a;
+}
+
+.cartao-texto {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--grafite);
+}
+
+.miniatura {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--bege);
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid var(--dourado);
+  background: var(--marrom);
+  color: var(--creme);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.controle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.controle input[type='search'],
+.controle input[type='text'],
+.controle select {
+  flex: 1 1 240px;
+  min-width: 200px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #d9c5a5;
+  border-radius: 8px;
+  font: inherit;
+  background: white;
+  color: var(--grafite);
+}
+
+.controle input:focus,
+.controle select:focus {
+  outline: 2px solid var(--dourado);
+  outline-offset: 1px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--marrom);
+  border-radius: 999px;
+  color: var(--marrom);
+  background: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.chip:hover,
+.chip:focus {
+  background: var(--marrom);
+  color: var(--creme);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--marrom);
+  color: var(--creme);
+}
+
+.contador {
+  font-size: 0.9rem;
+  color: #6b5a4a;
+  margin: 0.5rem 0 0;
+}
+
+.linha-poeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0.9rem;
+  background: #fffdf8;
+  border: 1px solid #e5d9c7;
+  border-radius: 10px;
+}
+
+.linha-poeta + .linha-poeta {
+  margin-top: 0.6rem;
+}
+
+.linha-poeta .linha-dados {
+  min-width: 0;
+}
+
+.linha-poeta h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+}
+
+.linha-poeta p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #6b5a4a;
+}
+
+.status {
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #d9c5a5;
+  background: #fffdf8;
+  font-weight: 700;
+  margin: 1rem 0 0;
+}
+
+.status-carregando {
+  border-color: var(--dourado);
+  color: var(--marrom);
+  background: var(--bege);
+}
+
+.status-erro {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+  background: #fdecec;
+}
+
+.status-vazio {
+  border-color: #d9c5a5;
+  color: #6b5a4a;
+  background: white;
+}
+
+.status-ok {
+  border-color: var(--verde);
+  color: var(--verde);
+  background: #eef7ee;
+}
+
+.codigo {
+  background: #2f2f2f;
+  color: #f6efe6;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 1rem 0 0;
+}
+
+code {
+  font-family: Consolas, 'Courier New', monospace;
+}
+
+p code,
+li code,
+td code {
+  background: var(--bege);
+  border: 1px solid #e5d9c7;
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  font-size: 0.88em;
+}
+
+.credito {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #d9c5a5;
+  font-size: 0.82rem;
+  color: #6b5a4a;
+}
+
+.credito p {
+  margin: 0.3rem 0;
+}
+
+.voltar {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--verde);
+  font-weight: 700;
+}
+
+.resultado-busca {
+  margin-bottom: 1.2rem;
+}
+
+.ordem-console {
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 0.9rem;
+  background: #2f2f2f;
+  color: #f6efe6;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin: 0.8rem 0 0;
+  min-height: 3.5rem;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 700px) {
+  .poeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .duas-tabelas {
+    flex-direction: column;
+  }
+
+  .controle {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   UNIDADE 2 (Next.js) - classes novas
+   --------------------------------------------------------------------------- */
+
+.menu a[aria-current='page'] {
+  text-decoration: underline;
+  text-decoration-color: var(--dourado);
+  text-underline-offset: 4px;
+}
+
+.topo h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-grupo {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dourado);
+  align-self: center;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1 1 200px;
+}
+
+.campo-curto {
+  flex: 0 1 150px;
+}
+
+.campo label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--marrom);
+}
+
+.campo input,
+.campo select {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #d9c5a5;
+  border-radius: 8px;
+  font: inherit;
+  background: white;
+  color: var(--grafite);
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--dourado);
+  outline-offset: 1px;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.cartao .miniatura-vazia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  border-radius: 8px;
+  background: var(--bege);
+  color: #6b5a4a;
+  font-size: 0.85rem;
+}
+
+.tabela-verbetes td:first-child {
+  width: 72px;
+}
+
+.tabela-verbetes img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--dourado);
+  display: block;
+}
+
+.tabela-verbetes a {
+  color: var(--verde);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tabela-verbetes a:hover,
+.tabela-verbetes a:focus {
+  text-decoration: underline;
+}
+
+.tabela-verbetes tbody tr:nth-child(even) {
+  background: #fffdf8;
+}
+
+.ficha {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  align-items: start;
+}
+
+.ficha-foto {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 4px solid var(--dourado);
+  background: var(--bege);
+}
+
+.ficha dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1rem;
+  margin: 1rem 0 0;
+}
+
+.ficha dt {
+  font-weight: 700;
+  color: var(--marrom);
+}
+
+.ficha dd {
+  margin: 0;
+}
+
+.ficha p {
+  line-height: 1.6;
+}
+
+.estrofe {
+  background: rgba(255, 255, 255, 0.5);
+  border-left: 4px solid var(--dourado);
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.estrofe p {
+  margin: 0.2rem 0;
+}
+
+.estrofe footer {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #6b5a4a;
+}
+
+.submenu {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.carregando {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.carregando::before {
+  content: '';
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 3px solid var(--dourado);
+  border-top-color: var(--marrom);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .ficha {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .campo-curto {
+    flex: 1 1 auto;
+  }
+}
+
+.ficha a {
+  color: var(--verde);
+  font-weight: 700;
+}
